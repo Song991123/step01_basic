@@ -22,7 +22,7 @@ public class Problem06 {
  * 랜덤 로또번호 출력 클래스
  * */
 class lottoRandomNumberLogic{
-	int lotto[] = new int[6];
+	private int lotto[] = new int[6];
 	/**
 	 * 숫자 6개 배열방에 저장하는 메소드
 	 * */
