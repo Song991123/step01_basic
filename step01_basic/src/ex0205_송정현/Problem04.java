@@ -41,7 +41,16 @@ public class Problem04 {
 					// ----------------------------------
 					for(int i = 0; i < scores.length; i++) {
 						System.out.print("scores[" + i + "]: ");
-						scores[i] = Integer.parseInt(sc.nextLine());
+						// 점수를 입력하지 않고 사용자가 엔터를 쳤다
+						String inputScore = sc.nextLine();
+						// 예외처리 --------------------
+						if(inputScore.trim().isEmpty()) {
+							System.out.println("점수가 입력되지 않았습니다. 다시 입력해주세요.");
+							i--;
+							continue;
+						}
+						// -------------------------------
+						scores[i] = Integer.parseInt(inputScore);
 					}
 					
 				}
@@ -53,6 +62,7 @@ public class Problem04 {
 						System.out.println("모든 데이터가 입력되지 않았습니다. 차례대로 데이터를 입력해주세요.");
 						continue;
 					}
+					
 					// ----------------------------------
 					for(int i = 0; i < scores.length; i++) {
 						System.out.println("scores[" + i + "]: " + scores[i]);

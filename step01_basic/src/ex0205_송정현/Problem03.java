@@ -17,9 +17,9 @@ public class Problem03 {
 		int totalCount = 0;
 		
 		for(int i = 0; i < array.length; i++) {
+			totalCount += array[i].length;
 			for(int j = 0; j < array[i].length; j++) {
 				sum += array[i][j];
-				totalCount++;
 			}
 		}
 		System.out.println("총합 : " + sum);

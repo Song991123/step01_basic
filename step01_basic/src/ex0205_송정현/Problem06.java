@@ -28,14 +28,14 @@ class lottoRandomNumberLogic{
 	 * */
 	private void generateLottoNumbers(){
 		int randomNo = 0;
-		int count 	  = 1;
-		while(count <= lotto.length ) {
+		int index  	      = 0;
+		while(index  < lotto.length ) {
 			randomNo = (int)(Math.random() * 45 +1);
 			
-			if(isDuplicate(randomNo)) continue;
+			if(isDuplicate(randomNo, index)) continue;
 			
-			lotto[count-1] = randomNo;
-			count++;
+			lotto[index] = randomNo;
+			index ++;
 		}
 	}
 	
@@ -43,9 +43,10 @@ class lottoRandomNumberLogic{
 	 * 중복체크 메소드
 	 * @param random 생성된 랜덤 숫자
 	 * */
-	private boolean isDuplicate(int random){
-		for(int number : lotto) {
-			if(number == random) return true;
+	private boolean isDuplicate(int random, int Index){
+		
+		for(int i = 0; i < Index; i++) {
+			if(lotto[i] == random) return true;
 		}
 		return false;
 	}
