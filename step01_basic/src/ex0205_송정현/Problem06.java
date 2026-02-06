@@ -55,8 +55,8 @@ class lottoRandomNumberLogic{
 	 * */
 	private void sortDescending(){
 		int temp = 0;
-		for(int i = 0; i < lotto.length; i++) { // 0~6까지
-			for(int j = 0; j < lotto.length - 1- i; j++) { // 0~6-i까지
+		for(int i = 0; i < lotto.length; i++) { // 0~5까지
+			for(int j = 0; j < lotto.length - 1- i; j++) { // 0~4-i까지
 				if(lotto[j] < lotto[j+1]) {
 					temp = lotto[j];
 					lotto[j] = lotto[j+1];
