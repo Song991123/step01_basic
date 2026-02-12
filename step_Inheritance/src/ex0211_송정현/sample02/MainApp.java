@@ -125,9 +125,6 @@ class FullTime extends Employee{
 		
 	}
 	public FullTime(int empNo, String eName, String job, int mgr, String hiredate, String deptName, int salary, int bonus) {
-		setEmpNo(empNo); 
-		seteName(eName);
-		setJob(job);
 		setEmpNo(empNo);
 		seteName(eName);
 		setJob(job);

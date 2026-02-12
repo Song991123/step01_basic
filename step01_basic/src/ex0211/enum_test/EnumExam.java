@@ -12,8 +12,8 @@ public class EnumExam {
 //		}
 		
 		Grade g = Grade.BASIC;
-		System.out.println(g.getCode());
-		System.out.println(g.getName());
+//		System.out.println(g.getCode());
+//		System.out.println(g.getName());
 	}
 
 }
