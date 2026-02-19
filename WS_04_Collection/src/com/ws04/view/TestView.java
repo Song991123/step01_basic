@@ -1,8 +1,10 @@
-package com.ws03.view;
+package com.ws04.view;
 
-import com.ws03.dto.AccountDto;
-import com.ws03.dto.UserDto;
-import com.ws03.service.BankService;
+import java.util.List;
+
+import com.ws04.dto.AccountDto;
+import com.ws04.dto.UserDto;
+import com.ws04.service.BankService;
 
 public class TestView {
 
@@ -11,12 +13,12 @@ public class TestView {
 		BankService service = new BankService();
 		System.out.println("---세팅 완료!!----");
 		
-        AccountDto[] accountList = service.getAccountList(100);
+        List<AccountDto> accountList = service.getAccountList(100);
 		
 		if(accountList==null) {
 			System.out.println("회원의 계좌정보가 없습니다. ");
 		}else {
-			System.out.println("회원계좌개수 : " + accountList.length);
+			System.out.println("회원계좌개수 : " + accountList.size());
 			for(AccountDto dto : accountList) {
 				System.out.println(dto.getAccountSeq() +" , " 
 			+ dto.getAccountNumber()+" , " + dto.getUserSeq());
