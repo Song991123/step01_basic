@@ -16,14 +16,8 @@ import com.ws04.dto.UserDto;
 
 //자동 import 단축키 = ctrl + shift + 영문o
 public class BankService {
-	//final은 고정값= 값변경불가 (반드시 초기화 필수)
-	final int ACCOUNT_SIZE = 10; /**계좌 최대개수*/
-	final int USER_SIZE = 5;/**고객 최대개수 */
-	
 	List<AccountDto> accountList = new ArrayList<>();
 	List<UserDto> userList = new ArrayList<>();
-	
-    
 	
 	/**
 	 * 생성자에서 테스트를 위한 고객 및 계좌 객체를 생성하고 리스트에 저장한다
@@ -95,10 +89,12 @@ public class BankService {
 	
 	/**
 	 * UserSeq 기준으로 정렬한다.
+	 * + 만약 사용자 번호가 같으면, 잔액을 기준으로 내림차순을 한다.
 	 * */
 	public List<AccountDto> getAccountListSortByUserSeq(){
 		List<AccountDto> copyList = new ArrayList<AccountDto>(accountList);
-		Collections.sort(copyList, (e1, e2) -> e1.getUserSeq() - e2.getUserSeq()); //Comparator Interface 이용
+		Collections.sort(copyList, 
+				(e1, e2) -> e1.getUserSeq() == e2.getUserSeq() ? e1.getBalance() - e2.getBalance() : e1.getUserSeq() - e2.getUserSeq()); //Comparator Interface 이용
 		
 		return copyList;
 	}

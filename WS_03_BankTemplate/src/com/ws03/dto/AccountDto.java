@@ -5,10 +5,10 @@ package com.ws03.dto;
  * */
 public class AccountDto {
 	// 필드 변수 ====================
-	private int accountSeq;
+	private int accountSeq; // PK
 	private String accountNumber;
 	private int balance;
-	private int userSeq;
+	private int userSeq; // FK
 	// ==========================/
 	
 	// 생성자 ======================

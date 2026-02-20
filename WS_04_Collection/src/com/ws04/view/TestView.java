@@ -26,7 +26,6 @@ public class TestView {
 			}
 		}
 		
-		
 		System.out.println("\n\n***2. userSeq에  해당하는 고객의 정보 *************");
 		UserDto userDto = service.getUserDetail(300); //300 userSeq
 		if(userDto!= null) {

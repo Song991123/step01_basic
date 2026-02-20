@@ -4,7 +4,7 @@ package com.ws03.dto;
  * */
 public class UserDto {
 	// 필드 변수 ====================
-	private int userSeq;
+	private int userSeq; // -> PK
 	private String name;
 	private String email;
 	private String phone;
