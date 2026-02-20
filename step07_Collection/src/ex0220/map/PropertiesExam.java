@@ -2,6 +2,7 @@ package ex0220.map;
 
 import java.io.InputStream;
 import java.util.Properties;
+import java.util.ResourceBundle;
 
 public class PropertiesExam {
 	Properties pro = new Properties();
@@ -67,13 +68,19 @@ public class PropertiesExam {
 	 * ResourceBundle 이용 
 	 */
 	public void test02() {
-		
+		// ResourceBundle은 ~.properties 파일을 로딩하는 전용 클래스
+		ResourceBundle rb = ResourceBundle.getBundle("a"); // classes 폴더를 기준으로 a.properties 로딩
+		for(String key : rb.keySet()) {
+			String value = rb.getString(key);
+			System.out.println(key + " = " + value);
+		}
 	}
 	
 	public static void main(String[] args) throws Exception{
 		PropertiesExam pe =  new PropertiesExam();
 		System.out.println("=============================");
-		pe.test01(); 
+//		pe.test01(); 
+		pe.test02();
 		System.out.println("---------------");
 		//pe.test02();
 		
