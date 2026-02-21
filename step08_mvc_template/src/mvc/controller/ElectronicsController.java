@@ -3,8 +3,12 @@ package mvc.controller;
 import java.util.List;
 
 import mvc.dto.Electronics;
+import mvc.exception.DuplicateModelNoException;
+import mvc.exception.ElectronicsArrayBoundsException;
+import mvc.exception.SearchNotFoundException;
 import mvc.service.ElectronicsService;
 import mvc.service.ElectronicsServiceImpl;
+import mvc.view.FailView;
 import mvc.view.SuccessView;
 
 
@@ -24,6 +28,12 @@ public class ElectronicsController {
     public void selectAll() {
 		// 서비스 호출하고 그 결과에 따라 성공 or 실패
     	List<Electronics> list =  service.selectAll();
+    	
+        if (list == null || list.isEmpty()) {
+            FailView.errorMessage("등록된 데이터가 없습니다.");
+            return;
+        }
+    	
     	SuccessView.printAll(list);
     }
  
@@ -33,9 +43,13 @@ public class ElectronicsController {
      */
    
     public void insert(Electronics electronics) {
-       
+    	try {
+			service.insert(electronics);
+			SuccessView.printMessage("등록되었습니다.");
+		} catch (ElectronicsArrayBoundsException | DuplicateModelNoException e) {
+	        FailView.errorMessage(e.getMessage());
+	    }
     }
-    
     
 
     /**
@@ -43,7 +57,12 @@ public class ElectronicsController {
      * @param modelNo
      */
     public void searchByModelNo(int modelNo) {
-    	
+        try {
+        	Electronics findElectronics = service.searchByModelNo(modelNo);
+        	SuccessView.printSearchByModelNo(findElectronics);
+        } catch (SearchNotFoundException e) {
+        	FailView.errorMessage(e.getMessage());
+        }
     } 
 
     /**
@@ -51,7 +70,12 @@ public class ElectronicsController {
      * @param electronics
      */
     public void update(Electronics electronics) {
-    	
+    	try {
+    		service.update(electronics);
+        	SuccessView.printMessage("수정이 완료되었습니다.");
+		} catch (SearchNotFoundException e) {
+			FailView.errorMessage(e.getMessage());
+		}
     }
     
     /**
@@ -59,7 +83,12 @@ public class ElectronicsController {
      * @param electronics
      */
 	public void deleteModelNo(int modelNo) {
-		
+		try {
+			service.delete(modelNo);
+        	SuccessView.printMessage("삭제가 완료되었습니다.");
+		} catch (SearchNotFoundException e) {
+			FailView.errorMessage(e.getMessage());
+		}
 	}
 	
 	/**
@@ -68,7 +97,9 @@ public class ElectronicsController {
      * @return
      */
     public void selectSortByPrice() {
+    	List<Electronics> sortList = service.selectSortByPrice();
     	
+    	SuccessView.printAll(sortList);
     }
     
 }

@@ -3,7 +3,7 @@ package mvc.dto;
  * 전자제품의 속성을 관리하는 객체 
  */
 
-public class Electronics {
+public class Electronics implements Comparable<Electronics>{
     private int modelNo;
     private String modelName;
     private int modelPrice;
@@ -77,5 +77,24 @@ public class Electronics {
 		return builder.toString();
 	}
 
-    
+	@Override
+	public boolean equals(Object obj) {
+		// 같은 객체(동일한 참조)인 경우 즉시 true 반환
+	    if (this == obj) return true;
+	    // 만약 Electronics 타입이 아니면 false 출력
+	    if (!(obj instanceof Electronics e)) return false;
+	    // modelNo가 같으면 true반환, 아니면 false 반환
+	    return modelNo == e.modelNo;
+	}
+
+	@Override
+	public int compareTo(Electronics o) {
+	    int priceCompare = Integer.compare(this.modelPrice, o.modelPrice);
+	    if (priceCompare != 0) return priceCompare;
+
+	    return Integer.compare(this.modelNo, o.modelNo);
+	}
+
+
+	
 }

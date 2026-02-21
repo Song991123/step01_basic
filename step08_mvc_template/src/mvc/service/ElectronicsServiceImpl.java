@@ -1,6 +1,8 @@
 package mvc.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -51,36 +53,54 @@ public class ElectronicsServiceImpl implements ElectronicsService {
 	public void insert(Electronics electronics) 
 			  throws ElectronicsArrayBoundsException, DuplicateModelNoException {
 		
+		if(list.size() >= MAX_SIZE) 	throw new ElectronicsArrayBoundsException("배열의 길이를 벗어나 더이상 등록 할수 없습니다.");
+		if(list.contains(electronics))  throw new DuplicateModelNoException("데이터 등록에 실패했습니다."); 
+		list.add(electronics);
 	}
 
 	@Override
 	public List<Electronics> selectAll() {
-		// TODO Auto-generated method stub
 		return list;
 	}
 
 	@Override
 	public Electronics searchByModelNo(int modelNo) throws SearchNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+		Electronics findElectronics = null;
+		
+		for(Electronics electronics : list) {
+			if(electronics.getModelNo() == modelNo) 	findElectronics = electronics;
+		}
+		
+		if(findElectronics == null) throw new SearchNotFoundException(modelNo + "는 없는 모델번호로 검색할수 없습니다.");
+		return findElectronics;
 	}
 
 	@Override
 	public void update(Electronics electronics) throws SearchNotFoundException {
-		// TODO Auto-generated method stub
-		
+		searchByModelNo(electronics.getModelNo()).setModelDetail(electronics.getModelDetail());
+
 	}
 
 	@Override
 	public void delete(int modelNo) throws SearchNotFoundException {
-		// TODO Auto-generated method stub
+		
+		for(int i = 0; i < list.size(); i++) {
+			if(list.get(i).getModelNo() == modelNo) {
+				list.remove(i);
+				return;
+			}
+		}
+		
+		throw new SearchNotFoundException(modelNo + "는 없는 모델번호로 검색할수 없습니다.");
 		
 	}
 
 	@Override
 	public List<Electronics> selectSortByPrice() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Electronics> copyList = new ArrayList(list);
+		Collections.sort(copyList);
+		
+		return copyList;
 	}
     
 } // 클래스 끝 
