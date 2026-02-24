@@ -43,7 +43,30 @@ public class GUIThreadExam extends JFrame{
     	// 시계 스레드 동작
     	new NowTimeThread().start();
     	
- 
+    	// textfield에 숫자 출력하기
+    	new Thread(()-> {
+    		for(int i = 1; i <= 1000; i++) {
+    			text1.setText( i + ""); //내부적으로 1000이 들어오는 건 눈 깜짝할 새임.
+    			try {
+					Thread.sleep(50);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+    		}
+    	}).start();
+    	// 버튼 클릭 시 할일 - 이벤트 등록 -> 이벤트 발생 주체.addXxxListener(구현);
+    	btn.addActionListener((e) ->{
+    		new Thread(() -> {
+    			for(char ch = 'A'; ch <= 'z'; ch++) {
+    				text2.setText(ch + "");
+    				try {
+    					Thread.sleep(50);
+    				} catch (InterruptedException exception) {
+    					exception.printStackTrace();
+    				}
+    			}
+    		}).start();
+    	});
     	
     }//생성자 끝
     
