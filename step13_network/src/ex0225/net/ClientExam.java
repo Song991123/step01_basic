@@ -8,7 +8,7 @@ import java.net.Socket;
 // 원래는 클라이언트랑 서버랑 다른 패키지에 만들어야하는데, 학습용이라 같은 곳이 구성
 public class ClientExam {
 	public ClientExam() {
-		try(Socket sk = new Socket("192.168.0.12", 8000)) { // 127.0.0.1 = 내 PC 본인을 가리킴 
+		try(Socket sk = new Socket("192.168.0.16", 8000)) { // 127.0.0.1 = 내 PC 본인을 가리킴 
 			
 			// 서버에 데이터를 전송한다.
 			PrintWriter pw = new PrintWriter(sk.getOutputStream(), true);
