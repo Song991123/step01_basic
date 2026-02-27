@@ -20,7 +20,7 @@ public class Test10 {
 		boolean result = students.stream().anyMatch((s) -> "Computer Science".equals(s.getMajor()));
 		
 		System.out.println(result);
-
+ 
 
 	}
 }
